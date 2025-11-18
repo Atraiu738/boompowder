@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Offers</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: #4e8cff;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .offers-container {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .offer {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .offer h3 {
+            margin-bottom: 10px;
+        }
+
+        .offer button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            width: 100%;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: #4e8cff;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .offer button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎁 Available Offers</h1>
+    <p>Choose a prize to explore</p>
+</header>
+
+<div class="offers-container">
+
+    <div class="offer">
+        <h3>Squishys mit spezial pulver 5 kaugummis </h3>
+        <p>auch normale squishys 10 kaugummi!</p>
+        <button>View Offer</button>
+    </div>
+
+    <div class="offer">
+        <h3>Kleine flugzeuge 10 pro kaugummi</h3>
+        <p>Auch grosse welt rekord flugzeuge kosten 1 für 5 kaugummis!</p>
+        <button>View Offer</button>
+    </div>
+
+    <div class="offer">
+        <h3>SPEACIAL VIP OFFER! (nur 10 kaugummis pro 2 wochen)</h3>
+        <p>Gratis sachen,weniger bezahlen,Zigaretten pulver und mit entscheiden!</p>
+        <button>View Offer</button>
+    </div>
+
+    <div class="offer">
+        <h3>zigaretten 1 pro kaugummi!</h3>
+        <p>Seht gut aus!</p>
+        <button>View Offer</button>
+    </div>
+
+</div>
+
+</body>
+</html>
