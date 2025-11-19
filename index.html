@@ -94,7 +94,105 @@
         <button>View Offer</button>
     </div>
 
+<div>	
+</div>	
+
+<!-- SPIN WHEEL SECTION -->
+<div class="wheel-section">
+    <h2>🎡 Spin the Wheel!</h2>
+    <p>Enter special code to spin:</p>
+
+    <input id="codeInput" placeholder="Enter code">
+    <br>
+    <canvas id="wheel" width="300" height="300"></canvas>
+    <br>
+    <button id="spinBtn">SPIN</button>
+
+    <p id="result"></p>
 </div>
+
+
+<script>
+const wheel = document.getElementById("wheel");
+const ctx = wheel.getContext("2d");
+
+// Wheel prizes
+const prizes = [
+    "Squishy",
+    "Small Paper Plane",
+    "Big Paper Plane",
+    "World-Record Paper Plane",
+    "1 Week Free VIP",
+    "Try Again",
+    "Bonus",
+    "Mystery Gift"
+];
+
+const numSlices = prizes.length;
+const arcSize = (2 * Math.PI) / numSlices;
+
+const SPECIAL_CODE = "2015"; // Your code
+
+function drawWheel() {
+    for (let i = 0; i < numSlices; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = i % 2 ? "#f39c12" : "#e74c3c";
+        ctx.moveTo(150, 150);
+        ctx.arc(150, 150, 150, arcSize * i, arcSize * (i + 1));
+        ctx.fill();
+        ctx.save();
+
+        ctx.translate(150, 150);
+        ctx.rotate(arcSize * i + arcSize / 2);
+        ctx.fillStyle = "#fff";
+        ctx.font = "15px Arial";
+        ctx.fillText(prizes[i], 40, 5);
+        ctx.restore();
+    }
+}
+drawWheel();
+
+document.getElementById("spinBtn").onclick = function () {
+    const code = document.getElementById("codeInput").value.trim();
+
+    if (code !== SPECIAL_CODE) {
+        document.getElementById("result").textContent = "❌ Wrong code!";
+        return;
+    }
+
+    const spinAngle = Math.random() * 2000 + 2000;
+    const rotateTime = 3000;
+    const start = performance.now();
+
+    function animate(now) {
+        const elapsed = now - start;
+        const rotation = easeOut(elapsed, 0, spinAngle, rotateTime);
+        wheel.style.transform = `rotate(${rotation}deg)`;
+
+        if (elapsed < rotateTime) {
+            requestAnimationFrame(animate);
+        } else {
+            finishSpin(rotation);
+        }
+    }
+
+    requestAnimationFrame(animate);
+};
+
+function easeOut(t, b, c, d) {
+    t /= d;
+    t--;
+    return c * (t * t * t + 1) + b;
+}
+
+function finishSpin(rotation) {
+    const normalized = rotation % 360;
+    const slice = Math.floor((normalized / 360) * prizes.length);
+    const prize = prizes[prizes.length - slice - 1];
+
+    document.getElementById("result").textContent = "🎉 Result: " + prize;
+}
+</script>
 
 </body>
 </html>
